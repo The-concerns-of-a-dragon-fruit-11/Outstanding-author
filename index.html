@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哈夫克集团官网</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.8;
+            color: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background: url("哈夫克官网首页图标.jpg") no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        nav {
+            padding: 15px 0;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 60%;
+        }
+
+        section {
+            background: rgba(0, 0, 0, 0.55);
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            animation: fadeUp 0.8s ease forwards;
+            opacity: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        section:nth-of-type(1) { animation-delay: 0.1s; }
+        section:nth-of-type(2) { animation-delay: 0.25s; }
+        section:nth-of-type(3) { animation-delay: 0.4s; }
+        section:nth-of-type(4) { animation-delay: 0.55s; }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #ffffff;
+            position: relative;
+            padding-left: 20px;
+            font-weight: 600;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #00d4ff, #0099cc);
+            border-radius: 2px;
+            transform: translateY(-50%);
+        }
+
+        h3 {
+            color: #00d4ff;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+            color: #d0d0d0;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
+        .product-item:hover {
+            transform: translateY(-8px);
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.15);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            margin: 15px 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .product-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        footer {
+            margin: 50px 0 30px;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #a0a0a0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            animation: fadeIn 1.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 0 15px; }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 14px; padding: 6px 12px; }
+            section { padding: 25px 20px; }
+            h2 { font-size: 22px; }
+            .product-item img { height: 160px; }
+        }
+
+        @media (max-width: 480px) {
+            nav ul { flex-direction: column; align-items: center; gap: 10px; }
+            nav a { display: block; width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">首页</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#product">产品介绍</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section id="home">
+        <h2>首页</h2>
+        <p>只要有授权，哈夫克资源将无限供应，哈夫克集团欢迎您的到来</p>
+    </section>
+
+    <section id="about">
+        <h2>关于我们</h2>
+        <p>2035年市值全球第一的科技引领者，业务涵盖计算、物流、人工智能开发。创始人兼CEO雅各布·哈夫克（JACOB HAAVK）继承父母遗志，将实现资源平等型社会、改善地球公民生活定为哈夫克集团的终极愿景。</p>
+        <p>集团依靠批量制作运输公司物流软件起家，自2007年CTO巴希尔·瓦拉比（BASHIR WARABE）加入后，迅速转型制作AI技术平台，随后推出哈夫克建立乌托邦社会的支柱技术——人工智能资源平衡系统（ERAIS）和曼德尔砖（Mandel-brick）超级计算单元，并选择与阿萨拉当权政府合作，将阿萨拉作为第一块实验田。</p>
+    </section>
+
+    <section id="product">
+        <h2>产品介绍</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <h3>曼德尔砖</h3>
+                <img src="曼德尔砖.jpg" alt="曼德尔砖">
+                <p>拥有强大算力，以强大的AI软件驱动，汇聚顶尖的工业明珠，拥有强大的算力，可帮助掌握哈夫克集团核心科技甚至篡改天网系统。曼德尔砖是由哈夫克公司创造的、砖块大小的模块化云计算硬件；由几个高强度专业化的诺翁计算芯片组成，并以强大的AI软件驱动的便携式控制节点。</p>
+            </div>
+
+            <div class="product-item">
+                <h3>relink脑机</h3>
+                <img src="relink脑机.jpg" alt="relink脑机">
+                <p>信息与你无限，relink重塑未来。脑机一型是一款高性能脑机互联设备，实现意识联网、信息直传、神经交互操控，打通人与人工智能、人与云端数据无缝连接。</p>
+            </div>
+
+            <div class="product-item">
+                <h3>试制聚变单元</h3>
+                <img src="试制聚变单元.jpg" alt="试制聚变单元">
+                <p>微型聚变反应无限提供能量。作为一种能源燃料，它是哈夫克集团研发的微型聚变反应原型装置，供能效率远超现有技术，可用于为特定规格的载具充能，在移动作战中发挥关键作用。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>联系我们</h2>
+        <p>商务合作｜授权对接｜技术咨询</p>
+        <p>地址：哈夫克科技总部</p>
+        <p>服务热线：24小时全球专属专线</p>
+        <p>官方邮箱：haavk@official.com</p>
+    </section>
+
+    <footer>
+        &copy; 2025 4.27 · 视觉传达交互设计 | 山东文化艺术职业学院 · 作品个人简介 | 保持创造，持续迭代
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
